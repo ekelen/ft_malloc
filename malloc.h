@@ -6,7 +6,7 @@
 /*   By: ekelen <ekelen@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 15:37:55 by lsimon            #+#    #+#             */
-/*   Updated: 2018/09/23 23:32:56 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/24 08:43:48 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void				ft_print_addr(void *addr);
 void				ft_print_unsigned_long(size_t n);
 void				ft_putstr(char *str);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
+void				ft_bzero(void *s, size_t n);
 
 void				*malloc(size_t size);
 void				*realloc(void *ptr, size_t size);
