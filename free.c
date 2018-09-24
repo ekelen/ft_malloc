@@ -6,7 +6,7 @@
 /*   By: ekelen <ekelen@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 14:04:12 by ekelen            #+#    #+#             */
-/*   Updated: 2018/09/23 16:22:18 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/24 13:50:29 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,7 @@ static t_zone		*actually_free(t_block *found_b, t_zone *curr)
 }
 
 /*
-** munmap any zones that are big enough + all free
-** return pointer to end of t_zone list
+** fuse free blocks (update pointers)
 */
 static void			*free_and_update(t_zone *curr, void *ptr)
 {
