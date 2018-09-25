@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   realloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekelen <ekelen@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: ekelen <ekelen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/15 09:43:28 by lsimon            #+#    #+#             */
-/*   Updated: 2018/09/23 16:25:46 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:46:47 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static t_zone		*in_list(void *ptr, t_zone *curr)
 
 static t_block		*locate_ptr(void *ptr, int *err)
 {
-	t_block	*found_block;
+	t_block		*found_block;
 	t_zone		*list;
 
 	found_block = NULL;
@@ -52,7 +52,7 @@ static t_block		*locate_ptr(void *ptr, int *err)
 		return (NULL);
 }
 
-void				*handle_no_size(void *ptr)
+static void			*handle_no_size(void *ptr)
 {
 	free(ptr);
 	return (NULL);
@@ -82,5 +82,5 @@ void				*realloc(void *ptr, size_t size)
 		found_block->is_free = 1;
 		return (new_block);
 	}
-	return (err > 0 ? NULL : malloc(size));
+	return (err > 0 || !size ? NULL : malloc(size));
 }

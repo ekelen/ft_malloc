@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_large.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekelen <ekelen@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: ekelen <ekelen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 13:25:18 by ekelen            #+#    #+#             */
-/*   Updated: 2018/09/23 11:38:04 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:42:04 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,24 @@ void				*retrieve_large_tail(t_block *curr)
 	if (!curr->next)
 		return (curr->ret_ptr);
 	return (retrieve_large_tail(curr->next));
+}
+
+/*
+** munmap large malloc and update previous pointer
+*/
+void			*free_and_update_lg(t_block *curr, void *ptr)
+{
+	t_block	*next;
+
+	if (curr)
+	{
+		if (curr->ret_ptr == ptr)
+		{
+			next = curr->next;
+			munmap(curr, sizeof(t_block) + curr->len);
+			return (next);
+		}
+		curr->next = free_and_update_lg(curr->next, ptr);
+	}
+	return (curr);
 }

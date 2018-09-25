@@ -6,7 +6,7 @@ endif
 
 # .PHONY: all, clean, fclean, re
 
-NAME		= libft_block_$(HOSTTYPE).so
+NAME		= libft_malloc_$(HOSTTYPE).so
 
 CC 			:= gcc
 
@@ -41,14 +41,14 @@ $(OBJ_PATH)%.o: %.c
 # symlink to simplified library name
 $(NAME): $(OBJ)
 	@$(CC) -shared -fPIC -o $(NAME) $(OBJ)
-	@ln -s $(NAME) libft_block.so
+	@ln -s $(NAME) libft_malloc.so
 	@echo "[MALLOC compiled.]\n"
 
 all: $(NAME)
 
 clean:
 	@rm -rf $(OBJ_PATH)
-	@rm -f libft_block.so
+	@rm -f libft_malloc.so
 
 fclean: clean
 	@rm -rf $(NAME)

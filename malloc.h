@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekelen <ekelen@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: ekelen <ekelen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 15:37:55 by lsimon            #+#    #+#             */
-/*   Updated: 2018/09/24 08:43:48 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:44:58 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MALLOC_H
 
 # include <sys/mman.h>
-// # include <stdio.h> // Remove
 # include <unistd.h>
 
 # define NB_CHUNKS 100
@@ -59,7 +58,7 @@ void				*realloc(void *ptr, size_t size);
 void				free(void *ptr);
 void				show_alloc_mem(void);
 
-
+void				*free_and_update_lg(t_block *curr, void *ptr);
 t_block				*add_large_node(t_block *curr, size_t req_size, int *err);
 void				*retrieve_large_tail(t_block *curr);
 t_block				*get_updated_head(t_block *curr, size_t rsz, void *addr);

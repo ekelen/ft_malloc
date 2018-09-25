@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekelen <ekelen@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: ekelen <ekelen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 14:04:12 by ekelen            #+#    #+#             */
-/*   Updated: 2018/09/24 13:50:29 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:50:20 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static void			*get_next(t_block *curr)
 
 /*
 ** get list of contiguous freed blocks
+** just to help determine when to call munmap
 */
+
 static t_block		*fuse_free_blocks(void *ptr, t_block *curr, t_block *s)
 {
 	if (!curr)
@@ -59,8 +61,9 @@ static t_zone		*actually_free(t_block *found_b, t_zone *curr)
 }
 
 /*
-** fuse free blocks (update pointers)
+** find node(s) to free, and from which list
 */
+
 static void			*free_and_update(t_zone *curr, void *ptr)
 {
 	t_block		*found_b;
@@ -74,26 +77,6 @@ static void			*free_and_update(t_zone *curr, void *ptr)
 			return (actually_free(found_b, curr));
 		}
 		curr->next = free_and_update(curr->next, ptr);
-	}
-	return (curr);
-}
-
-/*
-** munmap large malloc and update previous pointer
-*/
-static void			*free_and_update_lg(t_block *curr, void *ptr)
-{
-	t_block	*next;
-
-	if (curr)
-	{
-		if (curr->ret_ptr == ptr)
-		{
-			next = curr->next;
-			munmap(curr, sizeof(t_block) + curr->len);
-			return (next);
-		}
-		curr->next = free_and_update_lg(curr->next, ptr);
 	}
 	return (curr);
 }

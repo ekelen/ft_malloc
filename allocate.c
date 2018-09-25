@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   allocate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekelen <ekelen@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: ekelen <ekelen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 13:51:11 by ekelen            #+#    #+#             */
-/*   Updated: 2018/09/23 16:13:25 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:52:11 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
-t_block		*get_updated_head(t_block *curr, size_t rs, void *addr)
+/*
+** Add block to list, return head
+*/
+
+t_block			*get_updated_head(t_block *curr, size_t rs, void *addr)
 {
 	if (!curr)
 		return (init_block(addr, rs));
@@ -22,6 +26,10 @@ t_block		*get_updated_head(t_block *curr, size_t rs, void *addr)
 	rs, curr->ret_ptr + rs);
 	return (curr);
 }
+
+/*
+** Update free bytes count in list, return pointer for user
+*/
 
 static void		*get_ret_ptr(t_block *curr, size_t s, size_t *free_bytes)
 {

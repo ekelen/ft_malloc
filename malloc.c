@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekelen <ekelen@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: ekelen <ekelen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 10:39:23 by lsimon            #+#    #+#             */
-/*   Updated: 2018/09/23 16:27:06 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:44:23 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 t_manager	g_manager;
 
 /*
-Return zone with enough free bytes,
-or allocate a new zone if not
+** Return zone with enough free bytes,
+** or allocate a new zone if not
 */
+
 static t_zone		*get_zones(t_zone *curr, size_t st, int *err)
 {
 	t_zone	*new;
@@ -32,6 +33,10 @@ static t_zone		*get_zones(t_zone *curr, size_t st, int *err)
 		curr->next = get_zones(curr->next, st, err);
 	return (curr);
 }
+
+/*
+** Initialize lists of zones
+*/
 
 void				*malloc_small(size_t req_size)
 {
