@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekelen <ekelen@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: ekelen <ekelen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 11:52:59 by lsimon            #+#    #+#             */
-/*   Updated: 2018/09/23 16:27:30 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/25 10:59:30 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static size_t		get_optimal_size(size_t chunk_size)
 	return ((size_t)(initial / getpagesize()) + 1) * getpagesize();
 }
 
-t_block			*init_block(void *addr, size_t req_size)
+t_block				*init_block(void *addr, size_t req_size)
 {
 	t_block	*m_block;
 
@@ -52,6 +52,5 @@ t_zone				*init_zone(size_t sizetype)
 		zone->len = optimal_size;
 		zone->end = ((char*)zone + optimal_size);
 	}
-
 	return (zone);
 }

@@ -6,15 +6,15 @@
 /*   By: ekelen <ekelen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 13:25:18 by ekelen            #+#    #+#             */
-/*   Updated: 2018/09/25 10:42:04 by ekelen           ###   ########.fr       */
+/*   Updated: 2018/09/25 11:00:21 by ekelen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
 
-static t_block		*init_large_mmap(size_t req_size)
+static t_block	*init_large_mmap(size_t req_size)
 {
-	t_block		*mem_ptr;
+	t_block			*mem_ptr;
 	int				pagesize;
 	size_t			optimal_size;
 
@@ -48,7 +48,7 @@ t_block			*add_large_node(t_block *curr, size_t req_size, int *err)
 	return (curr);
 }
 
-void				*retrieve_large_tail(t_block *curr)
+void			*retrieve_large_tail(t_block *curr)
 {
 	if (!curr->next)
 		return (curr->ret_ptr);
@@ -58,6 +58,7 @@ void				*retrieve_large_tail(t_block *curr)
 /*
 ** munmap large malloc and update previous pointer
 */
+
 void			*free_and_update_lg(t_block *curr, void *ptr)
 {
 	t_block	*next;
