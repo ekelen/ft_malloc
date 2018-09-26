@@ -1,6 +1,6 @@
-# malloc
+# ft_malloc
 
-A dynamic memory manager written in C.  (Score: 100/125)
+🧠 A dynamic memory manager written in C.  (Score: 100/125)
 
 ### TODO
 
