@@ -22,7 +22,7 @@ SRC			+= init.c
 SRC			+= util_mem.c
 SRC			+= util_str.c
 
-OBJ_PATH 	= ./obj/
+OBJ_PATH 	= obj/
 
 OBJ_NAME 	= $(SRC:.c=.o)
 OBJ 		= $(addprefix $(OBJ_PATH),$(OBJ_NAME))
@@ -40,7 +40,7 @@ $(OBJ_PATH)%.o: %.c
 # Make shared library from object files
 # symlink to simplified library name
 $(NAME): $(OBJ)
-	@$(CC) -shared -fPIC -o $(NAME) $(OBJ)
+	@$(CC) -shared -fPIC -o $(NAME) $^
 	@ln -s $(NAME) libft_malloc.so
 	@echo "[MALLOC compiled.]\n"
 
